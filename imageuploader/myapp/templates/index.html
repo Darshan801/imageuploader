@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Imageuploader</title>
+  </head>
+  <body>
+    <div class="flex flex-col items-center justify-center mt-50">
+      <h1 class=" px-3 py-2 underline mb-3">Upload Image</h1>
+      <form class="py-2 px-3 mb-3 flex" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button class="bg-black text-white py-2 px-3 rounded-lg" type="submit" value="submit">upload</button>
+      </form>
+       
+    </div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+  {% for image in img %}
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img
+        src="{{ image.photo.url }}"
+        alt="Image"
+        class="w-full h-56 object-cover hover:scale-105 transition duration-300"
+      >
+     <div class="mt-2 text-center">
+        <small class="text-gray-500 text-sm font-medium tracking-wide">
+          {{ image.date }}
+        </small>
+</div>
+    </div>
+  {% endfor %}
+</div>
+
+
+   
+  </body>
+</html>
